@@ -1,0 +1,41 @@
+# 简单LLM Transformer 配置文件
+
+model:
+  vocab_size: 10000          # 词汇表大小
+  d_model: 256               # 嵌入维度
+  n_heads: 8                 # 注意力头数
+  n_layers: 6                # Transformer层数
+  d_ff: 1024                 # 前馈网络维度
+  max_seq_len: 512           # 最大序列长度
+  dropout: 0.1               # Dropout率
+  
+training:
+  batch_size: 16             # 批次大小
+  learning_rate: 1e-4        # 学习率
+  num_epochs: 10             # 训练轮数
+  max_steps: 10000           # 最大训练步数
+  warmup_steps: 1000         # 预热步数
+  gradient_clip: 1.0         # 梯度裁剪
+  save_every: 1000           # 保存检查点间隔
+  eval_every: 500            # 评估间隔
+  
+data:
+  train_file: "data/train.txt"     # 训练数据文件
+  val_file: "data/val.txt"         # 验证数据文件
+  tokenizer_file: "data/tokenizer.json"  # 分词器文件
+  
+generation:
+  max_length: 100            # 生成最大长度
+  temperature: 1.0           # 采样温度
+  top_k: 50                  # Top-k采样
+  top_p: 0.9                 # Top-p采样
+  
+logging:
+  log_dir: "logs"            # 日志目录
+  log_level: "INFO"          # 日志级别
+  tensorboard_dir: "runs"    # TensorBoard目录
+  
+checkpoint:
+  save_dir: "checkpoints"    # 检查点保存目录
+  load_path: null            # 加载检查点路径
+  save_best: true            # 是否保存最佳模型
